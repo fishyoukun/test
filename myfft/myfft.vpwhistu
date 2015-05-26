@@ -1,0 +1,45 @@
+[Global]
+CurrentProject=myfft.vpj
+[ProjectDates]
+myfft.vpj=20150312131615000
+[ActiveConfig]
+myfft.vpj=Debug
+[TreeExpansion2]
+-@ myfft.vpj
+  - Source Files
+  - Header Files
+  - Resource Files
+  - Bitmaps
+  - Other Files
+scroll:0
+[State]
+SCREEN: 1366 768 60 19 1198 663 0 0 M 0 0 0 0 1124 411 0
+CWD: ../myfft
+FILEHIST: 9
+../a.c
+../test.c
+../cordic.c
+../lsq/a.c
+../grade2point/grade2point.c
+../grade2point/grade2point.mak
+../grade2point/plot.c
+myfft.h
+myfft.c
+TBCLASS: 0 0
+DEBUG: 0 0 1 0 3 0 gdb
+00GetLeastPower2myfft.c23010x000000000040116c0
+printf
+strcpy
+std::*
+DEBUG2: 1
+00GetLeastPower2myfft.c23010x000000000040116c045
+returnmi?max2n(mi):un;
+}
+intGetLeastPower2(intinumber)
+{
+intiLeastPower2Number=0;
+if(inumber==0)
+{
+returniLeastPower2Number;
+
+}
