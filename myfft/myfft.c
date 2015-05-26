@@ -6,19 +6,21 @@
 
 int signalgen(TYPE_FFT *p,int length);
 int GetLeastPower2(int inumber);
-#define datalen 24
-//#define DEBUG_PRN 
+#define datalen 32421
+#define DEBUG_PRN 
 int main (int argc, char *argv[])
 {
     int N = datalen;
     int fftN = 0;
     int iloop ;
+    TYPE_FFT *p = NULL;
     TYPE_FFT y1 [datalen] ;
     TYPE_FFT y2 [datalen] ;
     TYPE_FFT y3 [datalen] ;
 
     memset(y1,0,sizeof(y1));
     signalgen(y1,N);
+    
     #ifdef DEBUG_PRN
     printf("origin data real imag\n");
     for (iloop = 0;iloop < N;iloop++ )
@@ -29,8 +31,18 @@ int main (int argc, char *argv[])
     }
     #endif
     fftN = GetLeastPower2(N);
+    p = malloc(sizeof(TYPE_FFT) * fftN);
+    memset(p,0,sizeof(TYPE_FFT)*fftN);
+    for (iloop = 0;iloop < N;iloop++ )
+    {
+      
+        (*p).real = y1[iloop].real;
+        (*p).imag = y1[iloop].imag;
+        p = p ++;
+        
+    }
     printf("N = %d,fftN=%d\n",N,fftN);
-    fft(y1,N);
+    fft(p,N);
     #ifdef DEBUG_PRN
     printf("fft data real imag \n");
     for (iloop = 0;iloop < N;iloop++ )
@@ -39,7 +51,7 @@ int main (int argc, char *argv[])
         printf("%f\n",y1[iloop].imag);
     }
     #endif
-    ifft(y1,fftN);
+    ifft(p,fftN);
      #ifdef DEBUG_PRN
     printf("ifft data real imag \n");
     for (iloop = 0;iloop < N;iloop++ )
