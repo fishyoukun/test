@@ -7,7 +7,7 @@
 int signalgen(TYPE_FFT *p,int length);
 int GetLeastPower2(int inumber);
 #define datalen 32421
-#define DEBUG_PRN 
+#define DEBUG_PRN
 int main (int argc, char *argv[])
 {
     int N = datalen;
@@ -36,7 +36,7 @@ int main (int argc, char *argv[])
     for (iloop = 0;iloop < N;iloop++ )
     {
       
-        (*p).real = y1[iloop].real;
+        (*p).real = y1[ iloop].real;
         (*p).imag = y1[iloop].imag;
         p = p ++;
         
@@ -90,7 +90,7 @@ int signalgen(TYPE_FFT *p,int length)
         TYPE_FFT *s2;
         if (s2 == NULL)
         {
-            printf("malloc s2 error!\n");
+            printf(" malloc s2 error!\n");
             return -2;
         }
         for (n = 0; n < length; n++) 
@@ -127,6 +127,8 @@ int signalgen(TYPE_FFT *p,int length)
  *   Replace @BitReverse(x,x,N,M) by refrence to 
  *   <The Scientist and Engineer's Guide to Digital Signal Processing>
  */
+
+
 
 
 
