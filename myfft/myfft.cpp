@@ -31,7 +31,7 @@ int main (int argc, char *argv[])
     }
     #endif
     fftN = GetLeastPower2(N);
-    p = malloc(sizeof(TYPE_FFT) * fftN);
+    p = (TYPE_FFT *)malloc(sizeof(TYPE_FFT) * fftN);
     memset(p,0,sizeof(TYPE_FFT)*fftN);
     for (iloop = 0;iloop < N;iloop++ )
     {
@@ -62,7 +62,7 @@ int main (int argc, char *argv[])
     printf("diff of origin data and ifft data: real imag\n");
     for (iloop = 0;iloop < N;iloop++ )
     {
-        y3[iloop].real = y2[iloop].real - y1[iloop].real;
+        y3[ iloop].real = y2[iloop].real - y1[iloop].real;
         y3[iloop].imag = y2[iloop].imag - y1[iloop].imag;
         printf("%f %f\n",y3[iloop].real,y3[iloop].imag);
     } 
@@ -81,7 +81,7 @@ int signalgen(TYPE_FFT *p,int length)
         float A1 = 3.0;/*amp of signal_1 */
         float A2= 5.0;/*amp of signal_2 */
         TYPE_FFT *s1;
-        s1=malloc(length*sizeof(TYPE_FFT));
+        s1=(TYPE_FFT *)malloc(length*sizeof(TYPE_FFT));
         if (s1 == NULL)
         {
             printf("malloc s1 error!\n");
