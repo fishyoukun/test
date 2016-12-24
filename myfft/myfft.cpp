@@ -6,7 +6,7 @@
 
 int signalgen(TYPE_FFT *p,int length);
 int GetLeastPower2(int inumber);
-#define datalen 32421
+#define datalen 8192
 #define DEBUG_PRN
 int main (int argc, char *argv[])
 {
