@@ -10,6 +10,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from pydub import AudioSegment
 import os
+from scipy.io import wavfile
 
 
 song = AudioSegment.from_mp3("1.mp3")
@@ -30,12 +31,21 @@ single = song.split_to_mono()
 length = len(song)
 print song
 print length
-sample=single[0][:8192]
+sample=single[0][:2048]
 print sample
-# sample.export("sample.mp3", format="mp3")
-#z=np.fft.fft(song)
-#plt.plot(np.abs(z))
+sample.export("sample.wav", format="wav")
+
 
 # os.system('sample.mp3')
 # plt.plot(sample.raw_data/2**15)
 # plt.show()
+samplefs,snd = wavfile.read('sample.wav')
+print snd
+print len(snd)
+snd=snd/(2.**15)
+#plt.plot(snd.data)
+#plt.show()
+z=np.fft.fft(snd.data)
+plt.plot(np.abs(z))
+plt.show()
+os.system('sample.wav')
