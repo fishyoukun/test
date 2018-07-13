@@ -5,14 +5,14 @@ Created on Thu Jul 12 19:13:21 2018
 @author: fish
 """
 
-#from __future__ import division
+from __future__ import division
 import numpy as np
 from matplotlib import pyplot as plt
 from pydub import AudioSegment
 import os
 from scipy.io import wavfile
 
-
+'read audio file different style,now mp3 style'
 song = AudioSegment.from_mp3("1.mp3")
 # song = AudioSegment.from_wav("3.wav")
 # ogg_version = AudioSegment.from_ogg("never_gonna_give_you_up.ogg")
@@ -21,31 +21,57 @@ song = AudioSegment.from_mp3("1.mp3")
 # mp4_version = AudioSegment.from_file("never_gonna_give_you_up.mp4", "mp4")
 # wma_version = AudioSegment.from_file("never_gonna_give_you_up.wma", "wma")
 # aac_version = AudioSegment.from_file("never_gonna_give_you_up.aiff", "aac")
+
+
 # song is not modified
 # AudioSegments are immutable
+# split to mono channel
 single = song.split_to_mono()
-# single[0].export("single_l.mp3", format="mp3")
-# single[1].export("single_r.mp3", format="mp3")
-# backwards = song.reverse()
+# single[0].export("single_l.mp3", format="mp3") 'l channel'
+# single[1].export("single_r.mp3", format="mp3") 'right channel'
+# backwards = song.reverse()  '反序'
 # backwards.export("2.mp3", format="mp3")
 length = len(song)
+
 print song
 print length
 sample=single[0][:2048]
 print sample
 sample.export("sample.wav", format="wav")
-
-
-# os.system('sample.mp3')
-# plt.plot(sample.raw_data/2**15)
-# plt.show()
 samplefs,snd = wavfile.read('sample.wav')
 print snd
-print len(snd)
+length =len(snd)
+print length
 snd=snd/(2.**15)
-#plt.plot(snd.data)
-#plt.show()
-z=np.fft.fft(snd.data)
-plt.plot(np.abs(z))
+print 'time =', (length/samplefs)
+time_axe= np.array(range(0,length))/samplefs
+plt.figure(1)
+plt.subplot(221)
+plt.plot(time_axe, snd, color='k')
+plt.xlabel('time')
+plt.ylabel('amp')
+plt.grid('true')
+plt.subplot(223)
+plt.plot(np.array(range(0,length)),snd,color='y')
+plt.xlabel('sample dot')
+plt.ylabel('amp')
+plt.grid('true')
+# plt.show()
+# plt.figure(2)
+plt.subplot(222)
+z=np.fft.fft(snd)
+z=np.fft.fftshift(z)
+freq_axe=np.array(range(0, length))/length - 0.5
+plt.plot(freq_axe,np.abs(z), color='g')
+plt.grid('true')
+plt.xlabel('fs')
+
+
+plt.subplot(224)
+plt.plot(freq_axe, np.angle(z),color='b')
+plt.grid('true')
+plt.xlabel('fs')
 plt.show()
-os.system('sample.wav')
+
+
+
