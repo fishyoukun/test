@@ -35,7 +35,7 @@ length = len(song)
 
 print song
 print length
-sample=single[0][1024:3072]
+sample=single[0][1024:4096]
 print sample
 sample.export("sample.wav", format="wav")
 samplefs,snd = wavfile.read('sample.wav')
@@ -55,6 +55,7 @@ plt.subplot(231)
 plt.plot(time_axe, snd, color='k')
 plt.xlabel('time')
 plt.ylabel('amp')
+plt.title('time domain')
 plt.grid('true')
 
 # plt.show()
@@ -64,23 +65,30 @@ freq_axe=np.array(range(0, length))/length - 0.5
 plt.plot(freq_axe,np.abs(z), color='g')
 plt.grid('true')
 plt.xlabel('fs')
+plt.title('freq domain amp')
 
 plt.subplot(233)
 freq_axe_hz=(np.array(range(0, length))/length - 0.5)*samplefs
 plt.plot(freq_axe_hz,np.abs(z), color='g')
 plt.grid('true')
-plt.xlabel('fs')
+plt.xlabel('hz')
+plt.title('freq domain amp')
+
 
 plt.subplot(224)
 plt.plot(np.array(range(0,length)),snd,color='y')
 plt.xlabel('sample dot')
 plt.ylabel('amp')
 plt.grid('true')
+plt.title('dot domain amp')
+
 
 plt.subplot(235)
 plt.plot(freq_axe, np.angle(z),color='b')
 plt.grid('true')
 plt.xlabel('fs')
+plt.title('freq domain pha')
+
 plt.show()
 
 
