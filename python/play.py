@@ -28,7 +28,7 @@ pygame.mixer.init()
 print("play music start")
 track = pygame.mixer.music.load(file)
 
-pygame.mixer.music.play(5, 0)
-time.sleep(dura_time*5)
+pygame.mixer.music.play(10, 0)
+time.sleep(dura_time*10)
 pygame.mixer.music.stop()
 print "play over"
