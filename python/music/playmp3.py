@@ -48,4 +48,4 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         print("Plays a mp3 file.\n\nUsage: %s filename.mp3" % sys.argv[0])
         sys.exit(-1)
-    playmp3(file)
+    playmp3(sys.argv[1])
